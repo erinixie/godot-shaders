@@ -1,0 +1,118 @@
+[gd_scene load_steps=9 format=3 uid="uid://bunsp627dpeba"]
+
+[ext_resource type="Texture2D" uid="uid://bqedq3ucxllmn" path="res://icon.svg" id="1_ig7tw"]
+[ext_resource type="Shader" uid="uid://bevj2fjgbhlys" path="res://shaders/test.gdshader" id="2_0xm2m"]
+[ext_resource type="Shader" uid="uid://dgklwyjpin01t" path="res://shaders/shine-2d.gdshader" id="3_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://ccbi2srkvpbix" path="res://assets/dona.png" id="3_h2yge"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h2yge"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1bvp3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lquwl"]
+shader = ExtResource("3_1bvp3")
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/shine_angle = 45.0
+shader_parameter/shine_speed = 0.3
+shader_parameter/shine_delay = 0.0
+shader_parameter/shine_reverse = false
+shader_parameter/Line_Width = 0.09
+shader_parameter/Line_Smoothness = 0.045
+shader_parameter/Brightness = 3.0
+shader_parameter/Distortion = 2.0
+shader_parameter/LensStrength = 0.05
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0xm2m"]
+shader = ExtResource("2_0xm2m")
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/shine_size = 0.1
+shader_parameter/shine_angle = 45.0
+shader_parameter/shine_speed = 0.3
+shader_parameter/shine_delay = 0.0
+shader_parameter/shine_reverse = false
+shader_parameter/Line_Width = 0.0
+shader_parameter/Line_Smoothness = 0.1
+shader_parameter/Brightness = 3.0
+shader_parameter/Distortion = 2.0
+shader_parameter/LensStrength = 0.05
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Fondo" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.187176, 0.187176, 0.187176, 1)
+
+[node name="Godot" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Godot"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ig7tw")
+
+[node name="ColorRect" type="ColorRect" parent="Godot"]
+visible = false
+material = SubResource("ShaderMaterial_h2yge")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="Godot"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Godot/CenterContainer"]
+material = SubResource("ShaderMaterial_1bvp3")
+layout_mode = 2
+texture = ExtResource("1_ig7tw")
+
+[node name="Sprites" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Dona" type="Sprite2D" parent="Sprites"]
+material = SubResource("ShaderMaterial_lquwl")
+position = Vector2(641, 470)
+scale = Vector2(0.766833, 0.766833)
+texture = ExtResource("3_h2yge")
+
+[node name="Icon" type="Sprite2D" parent="Sprites"]
+material = SubResource("ShaderMaterial_0xm2m")
+position = Vector2(641, 199)
+texture = ExtResource("1_ig7tw")
