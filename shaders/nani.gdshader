@@ -4,12 +4,12 @@ shader_type canvas_item;
 
 uniform float Speed : hint_range(0.0, 5.0) = 0.5;
 uniform float LineLength : hint_range(0.0, 4.0) = 2.0;
-uniform vec4 LineColor : source_color = vec4(0.8, 0.0, 0.6, 1.0);
+uniform vec4 LineColor : source_color = vec4(1.0, 1.0, 1.0, 1.0);
 uniform float Softness : hint_range(0.0, 1.0) = 0.1;
 uniform float Weirdness : hint_range(0.0, 1.0) = 0.1;
 
-const float RADIUS = 1.3;
-const float FREQ = 10.0;
+uniform float Radius : hint_range(0.0, 2.0) = 1.3;
+uniform float Freq  : hint_range(3.0, 50.0) = 10.0;
 
 float hash(vec2 v) {
     return fract(sin(dot(v, vec2(89.44, 19.36))) * 22189.22);
@@ -48,14 +48,15 @@ void fragment() {
 
     vec2 puv = vec2(
         Weirdness * length(uv) + Speed * TIME,
-        FREQ * atan(uv.y, uv.x)
+        Freq * atan(uv.y, uv.x)
     );
 
     float value = noise(puv);
-    value = length(uv) - RADIUS - LineLength * (value - 0.5);
+    value = length(uv) - Radius - LineLength * (value - 0.5);
     value = smoothstep(-Softness, Softness, value);
 
-    vec4 tex = texture(TEXTURE, getuv(fragCoord / resolution, resolution));
+    //vec4 tex = texture(TEXTURE, getuv(fragCoord / resolution, resolution));
+	vec4 tex = texture(TEXTURE, UV);
 	vec3 color = mix(tex.rgb, LineColor.rgb, value * LineColor.a);
     COLOR = vec4(color, 1.0);
 }
