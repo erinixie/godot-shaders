@@ -1,6 +1,5 @@
-[gd_scene load_steps=15 format=3 uid="uid://bunsp627dpeba"]
+[gd_scene format=3 uid="uid://bunsp627dpeba"]
 
-[ext_resource type="Shader" uid="uid://bevj2fjgbhlys" path="res://shaders/test.gdshader" id="1_272bh"]
 [ext_resource type="Texture2D" uid="uid://bqedq3ucxllmn" path="res://icon.svg" id="1_ig7tw"]
 [ext_resource type="Shader" uid="uid://crlyrt4dqrsba" path="res://shaders/2d-dissolve.gdshader" id="2_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://dbf7mdxde2au" path="res://assets/asuka.jpg" id="2_272bh"]
@@ -9,14 +8,14 @@
 [ext_resource type="Shader" uid="uid://dm0a76tqffd4h" path="res://shaders/nani.gdshader" id="4_5vw27"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5vw27"]
-shader = ExtResource("1_272bh")
-shader_parameter/mamma_mia = false
-shader_parameter/curvature = true
-shader_parameter/mask = true
-shader_parameter/scan_line = true
-shader_parameter/transparency = false
-shader_parameter/mode2 = false
-shader_parameter/trim_color = Vector4(1, 1, 1, 1)
+shader = ExtResource("4_5vw27")
+shader_parameter/Speed = 0.5
+shader_parameter/LineLength = 2.0
+shader_parameter/LineColor = Color(1, 1, 1, 1)
+shader_parameter/Softness = 0.1
+shader_parameter/Weirdness = 0.1
+shader_parameter/Radius = 1.3
+shader_parameter/Freq = 10.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_272bh"]
 shader = ExtResource("4_5vw27")
@@ -66,7 +65,7 @@ shader_parameter/dissolve_value = 0.7
 shader_parameter/burn_size = 0.08
 shader_parameter/burn_color = Color(1, 0.486275, 1, 0.65098)
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" unique_id=1313125575]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -74,7 +73,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Fondo" type="ColorRect" parent="."]
+[node name="Fondo" type="ColorRect" parent="." unique_id=1572772205]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -83,7 +82,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.187176, 0.187176, 0.187176, 1)
 
-[node name="TextureRectAsuka" type="TextureRect" parent="."]
+[node name="TextureRectAsuka" type="TextureRect" parent="." unique_id=1484444611]
 material = SubResource("ShaderMaterial_5vw27")
 layout_mode = 1
 anchors_preset = 15
@@ -93,7 +92,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_272bh")
 
-[node name="Godot" type="Control" parent="."]
+[node name="Godot" type="Control" parent="." unique_id=1143131928]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -102,7 +101,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Godot"]
+[node name="TextureRect" type="TextureRect" parent="Godot" unique_id=602995831]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -111,7 +110,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_ig7tw")
 
-[node name="ColorRect" type="ColorRect" parent="Godot"]
+[node name="ColorRect" type="ColorRect" parent="Godot" unique_id=437848431]
 material = SubResource("ShaderMaterial_272bh")
 layout_mode = 1
 anchors_preset = 15
@@ -121,7 +120,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="CenterContainer" type="CenterContainer" parent="Godot"]
+[node name="CenterContainer" type="CenterContainer" parent="Godot" unique_id=877642850]
 use_parent_material = true
 layout_mode = 1
 anchors_preset = 15
@@ -132,12 +131,12 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TextureRect" type="TextureRect" parent="Godot/CenterContainer"]
+[node name="TextureRect" type="TextureRect" parent="Godot/CenterContainer" unique_id=974517585]
 visible = false
 layout_mode = 2
 texture = ExtResource("1_ig7tw")
 
-[node name="Shine" type="Control" parent="."]
+[node name="Shine" type="Control" parent="." unique_id=1680488508]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -146,18 +145,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Godot_Shine" type="Sprite2D" parent="Shine"]
+[node name="Godot_Shine" type="Sprite2D" parent="Shine" unique_id=855431855]
 material = SubResource("ShaderMaterial_0xm2m")
 position = Vector2(641, 199)
 texture = ExtResource("1_ig7tw")
 
-[node name="Dona_Shine" type="Sprite2D" parent="Shine"]
+[node name="Dona_Shine" type="Sprite2D" parent="Shine" unique_id=1749264894]
 material = SubResource("ShaderMaterial_lquwl")
 position = Vector2(641, 470)
 scale = Vector2(0.766833, 0.766833)
 texture = ExtResource("3_h2yge")
 
-[node name="Burn" type="Control" parent="."]
+[node name="Burn" type="Control" parent="." unique_id=195077759]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -166,7 +165,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Godot_Burn" type="Sprite2D" parent="Burn"]
+[node name="Godot_Burn" type="Sprite2D" parent="Burn" unique_id=1014013836]
 material = SubResource("ShaderMaterial_7mycd")
 position = Vector2(643, 370)
 scale = Vector2(4.0625, 4.0625)
