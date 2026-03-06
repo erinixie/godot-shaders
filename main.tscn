@@ -1,13 +1,32 @@
-[gd_scene load_steps=12 format=3 uid="uid://bunsp627dpeba"]
+[gd_scene load_steps=15 format=3 uid="uid://bunsp627dpeba"]
 
+[ext_resource type="Shader" uid="uid://bevj2fjgbhlys" path="res://shaders/test.gdshader" id="1_272bh"]
 [ext_resource type="Texture2D" uid="uid://bqedq3ucxllmn" path="res://icon.svg" id="1_ig7tw"]
 [ext_resource type="Shader" uid="uid://crlyrt4dqrsba" path="res://shaders/2d-dissolve.gdshader" id="2_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://dbf7mdxde2au" path="res://assets/asuka.jpg" id="2_272bh"]
 [ext_resource type="Shader" uid="uid://dgklwyjpin01t" path="res://shaders/shine-2d.gdshader" id="3_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://ccbi2srkvpbix" path="res://assets/dona.png" id="3_h2yge"]
+[ext_resource type="Shader" uid="uid://dm0a76tqffd4h" path="res://shaders/nani.gdshader" id="4_5vw27"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_h2yge"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5vw27"]
+shader = ExtResource("1_272bh")
+shader_parameter/mamma_mia = false
+shader_parameter/curvature = true
+shader_parameter/mask = true
+shader_parameter/scan_line = true
+shader_parameter/transparency = false
+shader_parameter/mode2 = false
+shader_parameter/trim_color = Vector4(1, 1, 1, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1bvp3"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_272bh"]
+shader = ExtResource("4_5vw27")
+shader_parameter/Speed = 0.5
+shader_parameter/LineLength = 2.0
+shader_parameter/LineColor = Color(0.8, 0, 0.6, 1)
+shader_parameter/Softness = 0.1
+shader_parameter/Weirdness = 0.1
+shader_parameter/Radius = 1.3
+shader_parameter/Freq = 10.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0xm2m"]
 shader = ExtResource("3_1bvp3")
@@ -64,6 +83,16 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.187176, 0.187176, 0.187176, 1)
 
+[node name="TextureRectAsuka" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_5vw27")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_272bh")
+
 [node name="Godot" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -72,7 +101,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="Godot"]
 layout_mode = 1
@@ -84,7 +112,7 @@ grow_vertical = 2
 texture = ExtResource("1_ig7tw")
 
 [node name="ColorRect" type="ColorRect" parent="Godot"]
-material = SubResource("ShaderMaterial_h2yge")
+material = SubResource("ShaderMaterial_272bh")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -103,14 +131,14 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="Godot/CenterContainer"]
-material = SubResource("ShaderMaterial_1bvp3")
+visible = false
 layout_mode = 2
 texture = ExtResource("1_ig7tw")
 
 [node name="Shine" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
